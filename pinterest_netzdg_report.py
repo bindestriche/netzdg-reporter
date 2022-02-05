@@ -56,10 +56,10 @@ for url in urls:
     report_symbol.click()
 
     report_Volksverhetzung=driver.find_element_by_id("checkbox-Volksverhetzung (§ 130 StGB)")
-    #report_Volksverhetzung.click()
+    report_Volksverhetzung.click()
 
     report_Propaganda=driver.find_element_by_id("checkbox-Verbreiten von Propagandamitteln verfassungswidriger und terroristischer Organisationen (§ 86 StGB)")
-    #report_Propaganda.click()
+    report_Propaganda.click()
 
 
     report_is_accurate=driver.find_element_by_id("is_accurate")
@@ -73,63 +73,5 @@ for url in urls:
     report_understood=driver.find_element_by_id("understood_consequences")
     report_understood.click()
     driver.find_element_by_xpath("//button[@type='submit']").click()
-
-
-
-for data in datalist[1:]:
-    options = webdriver.ChromeOptions()
-    # options.headless = True
-
-    #driver.find_element_by_xpath('(//button)[2]').click()
-    print(data)
-    urlinput = data[0]
-    dateinput = data[1]
-    profileinput = data[4]
-    mailinput = "frosch99@posteo.de"
-    username = data[2]
-    hinweisinput = "Verfassungsfeindliche Symbolik in Kommentar " + data[3] + " von: " + username
-    ##hinweisinput=emoji_pattern.sub(r'', hinweisinput)
-    print(hinweisinput)
-    #driver.get("http://www.hassmelden.de")
-
-
-
-    WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//input[@name='url']")))
-
-    titlefield = driver.find_element_by_id("title")
-    titlefield.send_keys(hinweisinput)
-
-    urlfield = driver.find_element_by_name("url")
-    urlfield.send_keys(urlinput)
-
-    WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//input[@name='input_2']"))).send_keys("")
-
-    # driver.execute_script("document.getElementsByTagName('input')[0].value='"+text+"';")
-    driver.find_element_by_xpath("//input[@type='checkbox']").click()
-
-    datefield = driver.find_element_by_name("input_14")
-    datefield.send_keys(dateinput)
-
-    profilefield = driver.find_element_by_name("body")
-    profilefield.send_keys(profileinput)
-    driver.execute_script("document.getElementsByTagName('input')[1].value='" + hinweisinput + "';")
-
-    mailfield = driver.find_element_by_name("email")
-    mailfield.send_keys(mailinput)
-
-    browser = driver
-
-    browser.implicitly_wait(4)
-    old_value = browser.find_element_by_id('gfield_description_2_3').text
-    #driver.find_element_by_xpath("//input[@type='submit']").click()
-
-    new_value = browser.find_element_by_id(
-        "gform_confirmation_message_2").text  # will block for 3 seconds until thing-on-new-page appears
-    assert new_value != old_value
-    # time.sleep(3)
-
-    import random
-
-    # time.sleep(random.randint(15, 35))
 
 #driver.close()
